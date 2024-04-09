@@ -1,11 +1,11 @@
-// import '../styles/App.css'
+import '../styles/ConnexionMedecin.css'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 function ConnexionMedecin() {
   return (
     <>
-    <Form>
+    <Form className='form_connexion_medecin'>
       <Form.Group className="mb-3" controlId="identifiant">
         <Form.Label>Identifiant</Form.Label>
         <Form.Control type="identifiant" placeholder="Entez votre identifiant..." />

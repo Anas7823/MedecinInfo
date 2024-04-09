@@ -3,11 +3,14 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import ConnexionMedecin from './connexionMedecin';
+import ConnexionMedecin from './ConnexionMedecin.jsx';
+
+import Navigation from './Navigation.jsx';
 
 function App() {
   return (
     <>
+      <Navigation />
       <Routes>
         <Route path="/" element={<ConnexionMedecin />} />
         {/* <Route path="/liste-patients" element={<Composant />} /> */}
