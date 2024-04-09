@@ -1,11 +1,13 @@
-import '../styles/App.css'
-import {
-  Routes,
-  Route,
-} from "react-router-dom";
-import ConnexionMedecin from './ConnexionMedecin.jsx';
-
-import Navigation from './Navigation.jsx';
+import "../styles/App.css";
+import { Routes, Route } from "react-router-dom";
+import Navigation from "./Navigation.jsx";
+import ConnexionMedecin from "./connexionMedecin.jsx";
+import ConnexionAdmin from "./ConnexionAdmin.jsx";
+import Patient from "./Patient.jsx";
+import CreatePatient from "./CreatePatient.jsx";
+import PatientList from "./PatientList.jsx";
+import MedecinList from "./MedecinList.jsx";
+import ModifierPatient from "./ModifierPatient.jsx";
 
 function App() {
   return (
@@ -13,17 +15,18 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<ConnexionMedecin />} />
-        {/* <Route path="/liste-patients" element={<Composant />} /> */}
-        {/* <Route path="/patient/:idPatient" element={<Composant />} /> */}
-        {/* <Route path="/creer-patient" element={<Composant />} /> */}
-        {/* <Route path="/modifier-patient/:idPatient" element={<Composant />} /> */}
+        <Route path="/connexion-admin" element={<ConnexionAdmin />} />
+        <Route path="/patient-list" element={<PatientList />} />
+        <Route path="/patient/:idPatient" element={<Patient />} />
+        <Route path="/creer-patient" element={<CreatePatient />} />
+        <Route path="/modifier-patient/:idPatient" element={<ModifierPatient />}
+        />
+        <Route path="/liste-medecin" element={<MedecinList />} />
         {/* <Route path="/nouveau-rdv/:idPatient" element={<Composant />} /> */}
-        {/* <Route path="/connexion-admin" element={<Composant />} /> */}
-        {/* <Route path="/inscription-admin" element={<Composant />} /> */}
-        {/* <Route path="/liste-medecin" element={<Composant />} /> */}
+      
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

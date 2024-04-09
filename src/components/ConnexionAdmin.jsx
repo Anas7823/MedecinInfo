@@ -3,11 +3,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import logo from "../assets/lo9o.png";
 
-function ConnexionMedecin() {
+function ConnexionAdmin() {
   return (
     <>
       <img className="logo" src={logo} alt="" />
-      <h1>Bienvenue au plateform MedecinInfo</h1>
+      <h1>Connexion Administrateur</h1>
       <Form className="form_connexion_medecin">
         <Form.Group className="mb-3" controlId="identifiant">
           <Form.Label>Identifiant</Form.Label>
@@ -33,4 +33,4 @@ function ConnexionMedecin() {
   );
 }
 
-export default ConnexionMedecin;
+export default ConnexionAdmin;

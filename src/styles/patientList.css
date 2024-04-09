@@ -1,0 +1,21 @@
+h2 {
+  text-align: center;
+  margin-top: 10vh;
+  font-size: 2rem;
+  color: #2aa676;
+}
+
+.table_patient {
+  margin-top: 30vh;
+  width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.table_patient th {
+  background-color: #2aa676;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}

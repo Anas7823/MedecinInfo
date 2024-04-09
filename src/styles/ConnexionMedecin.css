@@ -1,7 +1,70 @@
-.form_connexion_medecin{
-    width: 60vw;
-    margin: 0 auto;
-    margin-top: 30vh;    
-    border: 1px solid red;
+.form_connexion_medecin {
+  /* width: 60vw; */
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 10vh;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px #ccc;
 }
 
+.form_inscription_admin {
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 20vh;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px #ccc;
+}
+h1 {
+  text-align: center;
+  margin-top: 5%;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 50px;
+}
+
+.creer-patient{
+
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.creer-patient button{
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form_modification{
+  width: fit-content;
+  margin: 0 auto;
+}
+.form_modification button{
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.link{
+  text-align: center;
+  margin-top: 10px;
+
+}
