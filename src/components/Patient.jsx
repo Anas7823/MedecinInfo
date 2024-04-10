@@ -6,14 +6,15 @@ import axios from "axios";
 
 
 const Patient = () => {
-  let { id } = useParams();
+  let  id  = useParams();
   const [patient, setPatient] = useState(null);
 
   useEffect(() => {
     const fetchPatientDetails = async () => {
       try {
-        const response = await axios.get(`http://api/patients/${id}`);
+        const response = await axios.get(`http://localhost:8000/admin/medecin/${id}/patients`);
         setPatient(response.data);
+        console.log("Patient details", response.data);
       } catch (error) {
         console.error("Erreur chargement des détails du patient", error);
       }

@@ -4,28 +4,40 @@ import { Link } from "react-router-dom";
 
 const MedecinList = () => {
   const [medecins, setMedecins] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  console.log("Chargement = "+isLoading);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchMedecins = async () => {
-      setIsLoading(true);
+      // setIsLoading(false);
       setError(null);
       try {
-        const response = await axios.get("api/medecins");
+        const response = await axios.get("http://localhost:8000/admin/medecins");
         setMedecins(response.data);
+        setIsLoading(false);
       } catch (err) {
         setError("Une erreur lors de l importation des patients");
         console.error("Une erreur s est produite", err);
       }
-      setIsLoading(false);
     };
 
     fetchMedecins();
   }, []);
 
-  if (isLoading) return <div>Chargement de la liste des patients...</div>;
-  if (error) return <div>Erreur : {error}</div>;
+  if (error) {
+    return (
+      <div>Erreur : {error}</div>
+    );
+  }
+  if (isLoading == true) {
+    return (
+      <div>
+        Chargement de la liste des patients...
+      </div>
+    );
+  }
+
 
   return (
     <div>
