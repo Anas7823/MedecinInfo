@@ -19,3 +19,37 @@ h2 {
   padding: 10px;
   text-align: center;
 }
+
+.listePatients{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.listePatients .listePatients_item{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+  padding: 10px;
+  border: 1px solid #2aa676;
+  border-radius: 5px;
+  background-color: #2aa676;
+  color: white;
+}
+
+.listePatients .listePatients_item a{
+  color: white;
+  text-decoration: none;
+  background-color: #1d7050;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.listePatients .listePatients_item a:hover{
+  background-color: white;
+  color: #1d7050;
+}

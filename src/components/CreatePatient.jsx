@@ -27,7 +27,6 @@ function CreatePatient() {
     <h2>Ajouter un nouveau patient</h2>
     <div  className="creer-patient">
       <Form>
-        <input type="hidden" name="id_medecin" value={userId} />
         <Form.Control type="text" name="nom" placeholder="Nom du patient" />
         <br />
         <Form.Control type="text" name="prenom" placeholder="Prénom du patient" />

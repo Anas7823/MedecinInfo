@@ -16,7 +16,6 @@ function Navigation() {
 
   const [userId, setUserId] = useState(localStorage.getItem('id_medecin')); // Récupérer l'ID de l'utilisateur depuis le localStorage 
   const [user, setUser] = useState(null);
-
    // Fonction pour enregistrer les informations de l'utilisateur dans le localStorage
    const storeUserInfo = (userId) => {
     localStorage.setItem('id_medecin', userId);
@@ -33,9 +32,9 @@ function Navigation() {
     try {
       const response = await axios.get('http://localhost:8000/medecin/' + userId); // Remplacez userId par l'ID de l'utilisateur connecté
       const userData = response.data;
-      console.log("id_medecin " + userId);
-      console.log("lien " + 'http://localhost:8000/medecin/' + userId);
-      console.log("userdata:", userData);
+      // console.log("id_medecin " + userId);
+      // console.log("lien " + 'http://localhost:8000/medecin/' + userId);
+      // console.log("userdata:", userData);
       setUser(userData);
       localStorage.setItem('user', JSON.stringify(userData)); // Enregistrer les informations de l'utilisateur dans le localStorage
     } catch (error) {
@@ -81,9 +80,15 @@ function Navigation() {
           <Nav className="me-auto">
             <div className="lien-nav">
               <Nav.Link href="/patient-list">Mes patients</Nav.Link>
-              <Nav.Link href="/createPatient">Nouveau patient</Nav.Link>
-              <Nav.Link href="#si admin">liste medecins</Nav.Link>
-              <Nav.Link href="#si admin">liste patients</Nav.Link>
+              <Nav.Link href="/creer-patient">Nouveau patient</Nav.Link>
+              {user.role === "admin" ? (
+                <>
+                  <Nav.Link href="#si admin">liste medecins</Nav.Link>
+                  <Nav.Link href="#si admin">liste patients</Nav.Link>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className="user-info">
