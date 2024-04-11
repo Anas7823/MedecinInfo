@@ -10,7 +10,6 @@ const MedecinList = () => {
 
   useEffect(() => {
     const fetchMedecins = async () => {
-      // setIsLoading(false);
       setError(null);
       try {
         const response = await axios.get("http://localhost:8000/admin/medecins");
@@ -33,7 +32,7 @@ const MedecinList = () => {
   if (isLoading == true) {
     return (
       <div>
-        Chargement de la liste des patients...
+        Chargement de la liste des médecins...
       </div>
     );
   }
@@ -41,11 +40,11 @@ const MedecinList = () => {
 
   return (
     <div>
-      <h2>Liste des Patients</h2>
-      <ul>
+      <h2>Liste des médecins</h2>
+      <ul className="listePatients">
         {medecins.map((medecin) => (
-          <li key={medecin.id}>
-            Nom: {medecin.nom}, Prénom: {medecin.prenom}
+          <li className='listePatients_item' key={medecin.id}>
+                <span>Mr/Mme: {medecin.nom} {medecin.prenom}</span>
             <Link to={`/patient/${medecin.id}`}>Voir Détails</Link>
           </li>
         ))}

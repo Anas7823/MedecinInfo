@@ -16,27 +16,31 @@ function Navigation() {
 
   const [userId, setUserId] = useState(localStorage.getItem('id_medecin')); // Récupérer l'ID de l'utilisateur depuis le localStorage 
   const [user, setUser] = useState(null);
-   // Fonction pour enregistrer les informations de l'utilisateur dans le localStorage
+   
+  // Fonction pour enregistrer les informations de l'utilisateur dans le localStorage
    const storeUserInfo = (userId) => {
     localStorage.setItem('id_medecin', userId);
   };
 
   // Fonction pour supprimer les informations de l'utilisateur du localStorage
   const removeUserInfo = () => {
-    localStorage.removeItem('id_medecin');
-    localStorage.removeItem('id');
+    localStorage.clear();
   };
 
   // Fonction pour récupérer les informations de l'utilisateur
   const getUserInfo = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/medecin/' + userId); // Remplacez userId par l'ID de l'utilisateur connecté
-      const userData = response.data;
-      // console.log("id_medecin " + userId);
-      // console.log("lien " + 'http://localhost:8000/medecin/' + userId);
-      // console.log("userdata:", userData);
+      const response = await axios.get('http://localhost:8000/medecin/' + userId);
+      let userData = response.data;
+      console.log('userData', userData);
+  
+      // if (req.session.user.role === 'admin') {
+      //   const adminResponse = await axios.get('http://localhost:8000/admin/' + userId);
+      //   userData = adminResponse.data;
+      // }
+  
       setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData)); // Enregistrer les informations de l'utilisateur dans le localStorage
+      localStorage.setItem('user', JSON.stringify(userData));
     } catch (error) {
       console.error(error);
     }
@@ -50,7 +54,7 @@ function Navigation() {
 
   const Deconnexion = async () => {
     try {
-      await axios.get('http://localhost:8000/medecin/logout');
+      await axios.get('http://localhost:8000/admin/logout');
       removeUserInfo(); // Supprimer les informations de l'utilisateur du localStorage lors de la déconnexion
       setUserId(null);
       setUser(null);
