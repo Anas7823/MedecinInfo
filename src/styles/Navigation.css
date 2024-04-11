@@ -1,3 +1,17 @@
 .navigation .container {
   margin: 0;
 }
+.me-auto{
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+.lien-nav{
+  display: flex;
+}
+
+.user-info{
+  display: flex;
+  margin-right: -45%;
+}
