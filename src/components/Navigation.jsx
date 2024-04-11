@@ -25,6 +25,7 @@ function Navigation() {
   // Fonction pour supprimer les informations de l'utilisateur du localStorage
   const removeUserInfo = () => {
     localStorage.removeItem('id_medecin');
+    localStorage.removeItem('id');
   };
 
   // Fonction pour récupérer les informations de l'utilisateur
@@ -87,6 +88,8 @@ function Navigation() {
 
             <div className="user-info">
               <Nav.Link href={"/medecin/" + user.id}>
+                <input type="hidden" name="id_medecin" value={user.id} />
+                <input type="hidden" name="identifiant" value={user.identifiant} />
                 {user.nom} {user.prenom}
               </Nav.Link>
               <Button variant="secondary" onClick={Deconnexion}>
