@@ -1,70 +1,40 @@
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import axios from "axios";
+import * as React from "react";
+import { useState, useEffect } from 'react';
 import "../styles/ConnexionMedecin.css";
 
-
 function CreatePatient() {
-  const [patient, setPatient] = useState({
-    nom: "",
-    prenom: "",
-    maladie: "",
-    traitement: "",
-  });
-  const handleChange = (e) => {
-    setPatient, { ...patient, [e.target.name]: e.target.value };
-    e.target.value;
-  };
+  const [userId, setUserId] = useState(localStorage.getItem('id_medecin')); // Récupérer l'ID de l'utilisateur depuis le localStorage
 
-
-  
-  const handleClick = async (e) => {
-    e.preventDefault();
+  const CreateTraitement = async (e) => {
+    // e.preventDefault();
+    const form = e.target.form;
+    const patient = {
+      id_medecin: userId,
+      nom: form.nom.value,
+      prenom: form.prenom.value,
+    };
     try {
-      await fetch.post("api", patient);
+      await axios.post("http://localhost:8000/patient", patient);
     } catch (error) {
       console.log(error);
     }
-  };
+  }
+
   return (
     <>
     <h2>Ajouter un nouveau patient</h2>
     <div  className="creer-patient">
-      <Form.Control
-        type="text"
-        name="nom"
-        value={patient.nom}
-        placeholder="Nom du patient"
-        onChange={handleChange}
-      />
-      <br />
-      <Form.Control
-        type="text"
-        name="prenom"
-        value={patient.prenom}
-        placeholder="Prénom du patient"
-        onChange={handleChange}
-      />
-      <br />
-      <Form.Control
-        type="text"
-        name="maladie"
-        value={patient.maladie}
-        placeholder="Maladie"
-        onChange={handleChange}
-      />
-
-      <br />
-      <Form.Control
-        type="text"
-        name="traitement"
-        value={patient.traitement}
-        placeholder="traitement"
-        onChange={handleChange}
-      />
-
-      <br />
-      <button  onClick={handleClick}> Ajout patient </button>
-      </div>
+      <Form>
+        <input type="hidden" name="id_medecin" value={userId} />
+        <Form.Control type="text" name="nom" placeholder="Nom du patient" />
+        <br />
+        <Form.Control type="text" name="prenom" placeholder="Prénom du patient" />
+        <br />
+        <button onClick={CreateTraitement}>Ajout patient</button>
+      </Form>
+    </div>
     </>
   );
 }
