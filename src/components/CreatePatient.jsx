@@ -16,7 +16,7 @@ function CreatePatient() {
       prenom: form.prenom.value,
     };
     try {
-      await axios.post("http://localhost:8000/patient", patient);
+      await axios.post("http://localhost:8000/patient", patient, {id_medecin: localStorage.getItem("id_medecin")});
     } catch (error) {
       console.log(error);
     }
