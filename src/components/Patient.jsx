@@ -61,12 +61,14 @@ const Patient = () => {
             <tr>
               <th>Nom</th>
               <th>Prenom</th>
-              <th>Maladie</th>
-              <th>Traitement</th>
-              <th>Rdv</th>
-              <th>Historique</th>
-              <th>Actions</th>
-
+              {traitement && traitement.length > 0 ? (
+                <>
+                  <th>Maladie</th>
+                  <th>Traitement</th>
+                  <th>Rdv</th>
+                  <th>Historique</th>
+                </>) : (<></>) }
+                  <th>Actions</th>
             </tr>
           </thead>
           <tbody>

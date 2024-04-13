@@ -12,7 +12,7 @@ const MedecinList = () => {
     const fetchMedecins = async () => {
       setError(null);
       try {
-        const response = await axios.get("http://localhost:8000/admin/medecins");
+        const response = await axios.post("http://localhost:8000/admin/medecins", {'id': localStorage.getItem("id")});
         setMedecins(response.data);
         setIsLoading(false);
       } catch (err) {
@@ -37,6 +37,7 @@ const MedecinList = () => {
     );
   }
 
+  console.log("Medecins = "+medecins);
 
   return (
     <div>
@@ -45,7 +46,7 @@ const MedecinList = () => {
         {medecins.map((medecin) => (
           <li className='listePatients_item' key={medecin.id}>
                 <span>Mr/Mme: {medecin.nom} {medecin.prenom}</span>
-            <Link to={`/patient/${medecin.id}`}>Voir Détails</Link>
+            <Link to={`/medecin/${medecin.id}`}>Voir Détails</Link>
           </li>
         ))}
       </ul>
