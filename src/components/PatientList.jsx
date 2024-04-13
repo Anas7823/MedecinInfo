@@ -11,7 +11,7 @@ const PatientList = () => {
   useEffect(() => {
     const fetchPatients = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/medecin/${id_medecin}/patients`);
+        const response = await axios.post(`http://localhost:8000/medecin/${id_medecin}/patients`);
         setPatients(response.data);
       } catch (err) {
         console.error("Une erreur s'est produite", err);
