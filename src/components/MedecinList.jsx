@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 
 const MedecinList = () => {
   const [medecins, setMedecins] = useState([]);
@@ -40,13 +40,13 @@ const MedecinList = () => {
   console.log("Medecins = "+medecins);
 
   return (
-    <div>
+    <div className="container">
       <h2>Liste des médecins</h2>
       <ul className="listePatients">
         {medecins.map((medecin) => (
           <li className='listePatients_item' key={medecin.id}>
                 <span>Mr/Mme: {medecin.nom} {medecin.prenom}</span>
-            <Link to={`/medecin/${medecin.id}`}>Voir Détails</Link>
+            {/* <Link to={`/medecin/${medecin.id}`}>Voir Détails</Link> */}
           </li>
         ))}
       </ul>

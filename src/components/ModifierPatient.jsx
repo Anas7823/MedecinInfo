@@ -71,7 +71,7 @@ export default function ModifierPatient() {
         <button onClick={handleSubmit}>Valider les Modifications</button>
         {error && <p>Erreur lors de la modification</p>}
       </div>
-      <div className="link"><Link to="/">Voir tous les patients</Link></div>
+      <div className="link"><Link to="/">Voir tous les patient</Link></div>
     </>
   );
 }

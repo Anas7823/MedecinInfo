@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 const Patient = () => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
 
-  let  id  = useParams();
+  let id = useParams();
   const [patient, setPatient] = useState([]);
   const [traitement, setTraitement] = useState([]);
   const [rdvsPatient, setRdvsPatient] = useState([]);
@@ -56,18 +56,26 @@ const Patient = () => {
     const fetchPatientDetails = async () => {
       console.log("ID = ", id.idPatient);
       try {
-        const response = await axios.post(`http://localhost:8000/medecin/patients/${id.idPatient}`, {'id_medecin': localStorage.getItem("id_medecin")});
+        const response = await axios.post(
+          `http://localhost:8000/medecin/patients/${id.idPatient}`,
+          { id_medecin: localStorage.getItem("id_medecin") }
+        );
         setPatient(response.data);
         console.log("Patient details ", response.data);
 
-        const traitement = await axios.post(`http://localhost:8000/patient/${id.idPatient}/traitements`, {'id_medecin': localStorage.getItem("id_medecin")});
+        const traitement = await axios.post(
+          `http://localhost:8000/patient/${id.idPatient}/traitements`,
+          { id_medecin: localStorage.getItem("id_medecin") }
+        );
         setTraitement(traitement.data);
         console.log("Traitement = ", traitement.data);
 
-        const rdvs = await axios.post(`http://localhost:8000/patient/${id.idPatient}/rdvs`, {'id_medecin': localStorage.getItem("id_medecin")});
+        const rdvs = await axios.post(
+          `http://localhost:8000/patient/${id.idPatient}/rdvs`,
+          { id_medecin: localStorage.getItem("id_medecin") }
+        );
         setRdvsPatient(rdvs.data);
         console.log("RDVs = ", rdvs.data);
-
       } catch (error) {
         console.error("Erreur chargement des détails du patient", error);
       }
@@ -96,8 +104,11 @@ const Patient = () => {
                   <th>Traitement</th>
                   <th>Rdv</th>
                   <th>Historique</th>
-                </>) : (<></>) }
-                  <th>Actions</th>
+                </>
+              ) : (
+                <></>
+              )}
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -136,14 +147,12 @@ const Patient = () => {
                 <Link to={`/modifier-patient/${patient.id} `} style={{margin: "5px", backgroundColor: "blue", color: "white", border: 'none', borderRadius: '5px'}}>Modifier</Link>
                 <button style={{margin: "5px", backgroundColor: "red", color: "white", border: 'none', borderRadius: '5px'}}>Supprimer</button>
               </td>
-
             </tr>
           </tbody>
-
         </Table>
       </div>
 
-      <div style={{width: "80vw", margin: "0 auto"}}>
+      <div style={{ width: "80vw", margin: "0 auto" }}>
         <br />
         <br />
         <br />
