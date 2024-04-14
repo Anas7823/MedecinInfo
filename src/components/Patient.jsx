@@ -4,17 +4,16 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
 const Patient = () => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
 
-  let  id  = useParams();
+  let id = useParams();
   const [patient, setPatient] = useState([]);
   const [traitement, setTraitement] = useState([]);
   const [rdvsPatient, setRdvsPatient] = useState([]);
@@ -27,18 +26,26 @@ const Patient = () => {
     const fetchPatientDetails = async () => {
       console.log("ID = ", id.idPatient);
       try {
-        const response = await axios.post(`http://localhost:8000/medecin/patients/${id.idPatient}`, {'id_medecin': localStorage.getItem("id_medecin")});
+        const response = await axios.post(
+          `http://localhost:8000/medecin/patients/${id.idPatient}`,
+          { id_medecin: localStorage.getItem("id_medecin") }
+        );
         setPatient(response.data);
         console.log("Patient details ", response.data);
 
-        const traitement = await axios.post(`http://localhost:8000/patient/${id.idPatient}/traitements`, {'id_medecin': localStorage.getItem("id_medecin")});
+        const traitement = await axios.post(
+          `http://localhost:8000/patient/${id.idPatient}/traitements`,
+          { id_medecin: localStorage.getItem("id_medecin") }
+        );
         setTraitement(traitement.data);
         console.log("Traitement = ", traitement.data);
 
-        const rdvs = await axios.post(`http://localhost:8000/patient/${id.idPatient}/rdvs`, {'id_medecin': localStorage.getItem("id_medecin")});
+        const rdvs = await axios.post(
+          `http://localhost:8000/patient/${id.idPatient}/rdvs`,
+          { id_medecin: localStorage.getItem("id_medecin") }
+        );
         setRdvsPatient(rdvs.data);
         console.log("RDVs = ", rdvs.data);
-
       } catch (error) {
         console.error("Erreur chargement des détails du patient", error);
       }
@@ -67,8 +74,11 @@ const Patient = () => {
                   <th>Traitement</th>
                   <th>Rdv</th>
                   <th>Historique</th>
-                </>) : (<></>) }
-                  <th>Actions</th>
+                </>
+              ) : (
+                <></>
+              )}
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -81,7 +91,10 @@ const Patient = () => {
                   <td>{traitement[0].medicaments}</td>
                   <td>
                     {rdvsPatient && rdvsPatient.length > 0 ? (
-                      <>{formatDate(rdvsPatient[0].date)} à {rdvsPatient[0].heure}</>
+                      <>
+                        {formatDate(rdvsPatient[0].date)} à{" "}
+                        {rdvsPatient[0].heure}
+                      </>
                     ) : (
                       <> </>
                     )}
@@ -98,27 +111,45 @@ const Patient = () => {
               ) : (
                 <> </>
               )}
-              <td style={{display: "flex", flexDirection: "column"}}>
-                <button style={{margin: "5px", backgroundColor: "blue", color: "white", border: 'none', borderRadius: '5px'}}>Modifier</button>
-                <button style={{margin: "5px", backgroundColor: "red", color: "white", border: 'none', borderRadius: '5px'}}>Supprimer</button>
+              <td style={{ display: "flex", flexDirection: "column" }}>
+                <button
+                  style={{
+                    margin: "5px",
+                    backgroundColor: "blue",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "5px",
+                  }}
+                >
+                  Modifier
+                </button>
+                <button
+                  style={{
+                    margin: "5px",
+                    backgroundColor: "red",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "5px",
+                  }}
+                >
+                  Supprimer
+                </button>
               </td>
-
             </tr>
           </tbody>
-
         </Table>
       </div>
 
-      <div style={{width: "80vw", margin: "0 auto"}}>
+      <div style={{ width: "80vw", margin: "0 auto" }}>
         <br />
         <br />
         <br />
         <br />
-        <h3>Proposer un rendez vous:</h3>
-        <form>
+        <h3 style={{ textAlign: "center" }}>Proposer un rendez vous:</h3>
+        <form className="form">
           <input type="date" name="date" />
           <input type="time" name="heure" />
-          <button style={{margin: "5px", backgroundColor: "blue", color: "white", border: 'none', borderRadius: '5px'}}>Proposer</button>
+          <button>Proposer</button>
         </form>
       </div>
 
